@@ -1,4 +1,5 @@
-@import '_reset';
+// @import '_reset';
+@import 'bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 // Variable
 $background: #E5E5E5;
@@ -31,6 +32,7 @@ main {
 
 .dragComponents {
     display: flex;
+    align-items: center;
     padding: 11px 16px;
     background: white;
     border-radius: 4px;
@@ -39,6 +41,7 @@ main {
         margin-right: 10px;
     }
     p {
+        margin: 0;
         font-family: $font_family;
         font-weight: 300;
         font-size: 16px;
