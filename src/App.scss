@@ -1,0 +1,28 @@
+@import '_reset';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+// Variable
+$background: #E5E5E5;
+$blackbg: #2D2D2D;
+
+
+main {
+    display: flex;
+    height: 100vh;
+    background: $background;
+}
+
+.playGround {
+    flex-basis: 70%;
+}
+.toolBox {
+    flex-basis: 30%;
+    background: $blackbg;
+    padding: 25px;
+    h1 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+        line-height: 27px;
+        font-weight: 700;
+        color: white;
+    }
+}
