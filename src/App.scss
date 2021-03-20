@@ -4,6 +4,7 @@
 $background: #E5E5E5;
 $blackbg: #2D2D2D;
 
+$font_family: 'Open Sans', sans-serif;
 
 main {
     display: flex;
@@ -19,10 +20,29 @@ main {
     background: $blackbg;
     padding: 25px;
     h1 {
-        font-family: 'Open Sans', sans-serif;
+        font-family: $font_family;
         font-size: 20px;
         line-height: 27px;
         font-weight: 700;
         color: white;
+        margin-bottom: 30px;
+    }
+}
+
+.dragComponents {
+    display: flex;
+    padding: 11px 16px;
+    background: white;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    img {
+        margin-right: 10px;
+    }
+    p {
+        font-family: $font_family;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 22px;
+        color: #000000;
     }
 }

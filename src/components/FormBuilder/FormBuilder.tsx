@@ -1,5 +1,5 @@
 import React from 'react'
-
+import DraggableComponent from '../DraggableComponent';
 const FormBuilder = (): JSX.Element => {
     return (
         <main>
@@ -7,6 +7,9 @@ const FormBuilder = (): JSX.Element => {
             </section>
             <section className="toolBox">
                 <h1>Blocks</h1>
+                <DraggableComponent type="Label" />
+                <DraggableComponent type="Input" />
+                <DraggableComponent type="Button" />
             </section>
         </main>
     )
