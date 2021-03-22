@@ -4,23 +4,25 @@ import { Modal, Button, Form } from 'react-bootstrap';
 interface ModalFormProps {
   data: any;
   handleClose: () => void;
+  addElement: (data: any) => void;
 }
 const ModalForm = (props: ModalFormProps) => {
-    const { data, handleClose } = props;
-    const [form, setForm] = useState({
+    const { data, handleClose, addElement } = props;
+    const initialState = {
         text: '',
         x: '',
         y: '',
         fontSize: '12',
         fontWeight: '400',
-    })
+    }
+    const [form, setForm] = useState(initialState)
     useEffect(() => {
         if (data) {
-            setForm(prevForm => ({
-                ...prevForm,
+            setForm({
+                ...initialState,
                 x: data.x,
                 y: data.y,
-            }))
+            })
         }
     }, [data])
     const setField = (field: string, value: string) => {
@@ -37,7 +39,7 @@ const ModalForm = (props: ModalFormProps) => {
             keyboard={false}
         >
             <Modal.Header closeButton>
-            <Modal.Title>Modal title</Modal.Title>
+            <Modal.Title>Edit {data.type}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
@@ -86,7 +88,7 @@ const ModalForm = (props: ModalFormProps) => {
                             onChange={ e => setField('fontWeight', e.target.value) }
                         />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" type="button" onClick={() => addElement(form)}>
                         Save Changes
                     </Button>
                 </Form>
