@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDrag } from 'react-dnd'
-import IProps from './types'
+import IProps, { ElementTypes, dndIdentifier } from './types'
 
 const Label = (props: IProps) => {
     const {data, uniqueId, isSelected, onClick} = props;
     const [{ opacity }, dragRef] = useDrag(
         () => ({
-          type: 'components',
-          item: { type: 'Label',  uniqueId},
+          type: dndIdentifier,
+          item: { type: ElementTypes.Label,  uniqueId},
           collect: (monitor) => ({
             opacity: monitor.isDragging() ? 0.5 : 1
           })

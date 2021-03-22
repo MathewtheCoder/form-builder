@@ -1,17 +1,16 @@
 import React from 'react'
 import {Button} from 'react-bootstrap'
 import { useDrag } from 'react-dnd'
-import IProps from './types'
+import IProps, { ElementTypes, dndIdentifier } from './types'
 
 const ButtonDraggable = (props: IProps) => {
     const {data, uniqueId, isSelected, onClick} = props;
     const [{ opacity }, dragRef] = useDrag(
         () => ({
-          type: 'components',
-          item: { type: 'Input',  uniqueId},
+          type: dndIdentifier,
+          item: { type: ElementTypes.Input,  uniqueId},
           collect: (monitor) => ({
             opacity: monitor.isDragging() ? 0.5 : 1,
-            // outlineClass: monitor.isDragging() ? 'elementOutline' : ''
           })
         }),
         []

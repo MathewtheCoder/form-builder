@@ -1,12 +1,13 @@
 import React from 'react'
 import { useDrag } from 'react-dnd'
 import dragIcon from '../../assets/grip-vertical.png';
+import {dndIdentifier} from './types';
 
 const DraggableComponent = (props: {type: string}) => {
     const {type} = props
     const [{ opacity }, dragRef] = useDrag(
         () => ({
-          type: 'components',
+          type: dndIdentifier,
           item: { type },
           collect: (monitor) => ({
             opacity: monitor.isDragging() ? 0.5 : 1
