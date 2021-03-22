@@ -4,11 +4,23 @@ import { useDrop } from "react-dnd";
 import ModalForm from '../ModalForm';
 import { Label, Input, ButtonDraggable } from '../DraggableComponent'
 import uuidv4 from '../../utils/uuidv4';
+import useKeyPress from './useKeyPress';
 
 const Playground = () => {
     const [show, setShow] = useState(false);
     const [elements, updateElements] = useState({});
     const [selectedElement, setSelectedElement] = useState(false);
+    const removeElement = () => {
+        if (selectedElement) {
+            const currentElements = {...elements};
+            delete currentElements[selectedElement];
+            updateElements({...currentElements})
+        }
+    }
+
+    useKeyPress('Delete', removeElement, [elements, selectedElement]);
+    useKeyPress('Backspace', removeElement, [elements, selectedElement]);
+
     const handleClose = () => setShow(false);
     const [, dropTarget] = useDrop(() => ({
         accept: 'components',
