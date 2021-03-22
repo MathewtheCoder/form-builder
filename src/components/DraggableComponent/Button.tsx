@@ -1,14 +1,17 @@
 import React from 'react'
 import {Button} from 'react-bootstrap'
 import { useDrag } from 'react-dnd'
-const ButtonDraggable = (props: {data: any, uniqueId: string}) => {
-    const {data, uniqueId} = props;
+import IProps from './types'
+
+const ButtonDraggable = (props: IProps) => {
+    const {data, uniqueId, isSelected, onClick} = props;
     const [{ opacity }, dragRef] = useDrag(
         () => ({
           type: 'components',
           item: { type: 'Input',  uniqueId},
           collect: (monitor) => ({
-            opacity: monitor.isDragging() ? 0.5 : 1
+            opacity: monitor.isDragging() ? 0.5 : 1,
+            // outlineClass: monitor.isDragging() ? 'elementOutline' : ''
           })
         }),
         []
@@ -16,6 +19,8 @@ const ButtonDraggable = (props: {data: any, uniqueId: string}) => {
     return <Button
         type="button"
         ref={dragRef}
+        className={isSelected ? 'elementOutline' : ''}
+        onClick={onClick}
         style={{
             position: 'absolute',
             top: data.y, 

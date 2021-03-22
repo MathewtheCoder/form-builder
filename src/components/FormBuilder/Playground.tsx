@@ -8,6 +8,7 @@ import uuidv4 from '../../utils/uuidv4';
 const Playground = () => {
     const [show, setShow] = useState(false);
     const [elements, updateElements] = useState({});
+    const [selectedElement, setSelectedElement] = useState(false);
     const handleClose = () => setShow(false);
     const [, dropTarget] = useDrop(() => ({
         accept: 'components',
@@ -40,23 +41,38 @@ const Playground = () => {
     }
     console.log(elements)
     return (
-        <section className="playGround" ref={dropTarget}>
+        <section className="playGround" ref={dropTarget} onClick={() => setSelectedElement(false)}>
             {Object.entries(elements).map(([key, element]) => (
                 <>
                     {element.type === 'Label' && <Label
                         data={element}
                         key={key}
                         uniqueId={key}
+                        isSelected={selectedElement === key}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedElement(key)
+                        }}
                     />}
                     {element.type === 'Input' && <Input
                         data={element}
                         key={key}
                         uniqueId={key}
+                        isSelected={selectedElement === key}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedElement(key)
+                        }}
                     />}
                     {element.type === 'Button' && <ButtonDraggable
                         data={element}
                         key={key}
                         uniqueId={key}
+                        isSelected={selectedElement === key}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedElement(key)
+                        }}
                     />}
                 </>
             ))}

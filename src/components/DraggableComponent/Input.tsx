@@ -1,8 +1,9 @@
 import React from 'react'
 import { useDrag } from 'react-dnd'
+import IProps from './types'
 
-const Input = (props: {data: any, uniqueId: string}) => {
-    const {data, uniqueId} = props;
+const Input = (props: IProps) => {
+    const {data, uniqueId, isSelected, onClick} = props;
     const [{ opacity }, dragRef] = useDrag(
         () => ({
           type: 'components',
@@ -18,6 +19,8 @@ const Input = (props: {data: any, uniqueId: string}) => {
             type="text"
             placeholder={data.text}
             ref={dragRef}
+            className={isSelected ? 'elementOutline' : ''}
+            onClick={onClick}
             style={{
                 position: 'absolute',
                 top: data.y,
