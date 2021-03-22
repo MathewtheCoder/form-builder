@@ -1,16 +1,30 @@
 import React from 'react'
+import { useDrag } from 'react-dnd'
 
-const Input = ({data}: {data: any}) => {
+const Input = (props: {data: any, uniqueId: string}) => {
+    const {data, uniqueId} = props;
+    const [{ opacity }, dragRef] = useDrag(
+        () => ({
+          type: 'components',
+          item: { type: 'Input',  uniqueId},
+          collect: (monitor) => ({
+            opacity: monitor.isDragging() ? 0.5 : 1
+          })
+        }),
+        []
+    )
     return (
         <input
             type="text"
-            value={data.text}
+            placeholder={data.text}
+            ref={dragRef}
             style={{
                 position: 'absolute',
                 top: data.y,
                 left: data.x,
                 fontSize: data.fontSize,
-                fontWeight: data.fontWeight
+                fontWeight: data.fontWeight,
+                opacity
             }}
         />
     )
