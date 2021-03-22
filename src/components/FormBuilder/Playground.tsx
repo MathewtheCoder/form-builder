@@ -10,6 +10,8 @@ const Playground = () => {
     const [show, setShow] = useState(false);
     const [elements, updateElements] = useState({});
     const [selectedElement, setSelectedElement] = useState(false);
+    const handleClose = () => setShow(false);
+    // Event handler to remove elements on Delete keypress
     const removeElement = () => {
         if (selectedElement) {
             const currentElements = {...elements};
@@ -17,11 +19,18 @@ const Playground = () => {
             updateElements({...currentElements})
         }
     }
-
+    // Event handler to show modal element on enter key press
+    const editElement = () => {
+        if (elements.hasOwnProperty(selectedElement)) {
+            setShow({
+                ...elements[selectedElement],
+                uniqueId: selectedElement, 
+            })
+        }
+    }
     useKeyPress('Delete', removeElement, [elements, selectedElement]);
     useKeyPress('Backspace', removeElement, [elements, selectedElement]);
-
-    const handleClose = () => setShow(false);
+    useKeyPress('Enter', editElement, [elements, selectedElement])
     const [, dropTarget] = useDrop(() => ({
         accept: 'components',
         drop: (item, monitor) => {
@@ -44,14 +53,13 @@ const Playground = () => {
             }
         }
     }))
+    // 
     const addElement = (data: any) => {
-        console.log(data, show)
-        const uuid = uuidv4()
+        const uuid = data?.uniqueId || uuidv4();
         // @ts-ignore
         updateElements({...elements, [uuid]:{...data, type: show?.type}})
         handleClose();
     }
-    console.log(elements)
     return (
         <section className="playGround" ref={dropTarget} onClick={() => setSelectedElement(false)}>
             {Object.entries(elements).map(([key, element]) => (

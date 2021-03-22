@@ -20,8 +20,7 @@ const ModalForm = (props: ModalFormProps) => {
         if (data) {
             setForm({
                 ...initialState,
-                x: data.x,
-                y: data.y,
+                ...data
             })
         }
     }, [data])
