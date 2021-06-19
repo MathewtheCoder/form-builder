@@ -7,7 +7,7 @@ A simple drag and drop form builder which lets user add form elements like label
 - Run the project ```yarn start```
 
 
-TODO List
-[x] Add basic form elements
-[x] Undo changes
-[ ] Call an api with the form values on submission 
+## TODO List
+- [x] Add basic form elements
+- [x] Undo changes
+- [ ] Call an api with the form values on submission 
