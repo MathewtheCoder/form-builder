@@ -1,5 +1,5 @@
 # Drag and Drop Form Builder
-A simple drag and drop form builder which lets user add form elements like label, input and buttons and configuration them accordingly.
+A simple drag and drop form builder which lets user add form elements like label, input and buttons and configure them accordingly.
 
 ## Getting Started
 
